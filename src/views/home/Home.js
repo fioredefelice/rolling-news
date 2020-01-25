@@ -67,10 +67,9 @@ class Home extends Component {
 
     BuildCardsPrimary() {
         return this.state.articlesCardPrimary.map(articleCard => {
-
             const { id, title, copete, description, path, date, image } = articleCard;  
-            const titleCard = title.substr(0, 100) + (title.length > 100 ? '...' : '');  
-            const subtitle = copete.substr(0, 200) + (copete.length > 200 ? '...' : '');      
+            const titleCard = title && title.substr(0, 100) + (title.length > 100 ? '...' : '');  
+            const subtitle = copete && copete.substr(0, 200) + (copete.length > 200 ? '...' : '');      
             return (
                 <div key={id} className="col-12 col-md-6 d-none d-lg-block">
                     <Card
@@ -90,7 +89,7 @@ class Home extends Component {
         return this.state.articlesCardSecondary.map(articleCard => {
 
             const { id, title, copete, description, path, date, image } = articleCard;
-            const subtitle = copete.substr(0, 100) + (copete.length > 100 ? '...' : '');
+            const subtitle = copete && copete.substr(0, 100) + (copete.length > 100 ? '...' : '');
             return (
                 <div className='col-12 col-md-6 col-lg-3' key={id}>
                     <Card 
