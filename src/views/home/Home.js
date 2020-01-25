@@ -166,6 +166,7 @@ class Home extends Component {
                     />
                     </div>
                 </div>
+                <hr />
                 <div className='row'>
                     {this.BuildCardsPrimary()}
                 </div>

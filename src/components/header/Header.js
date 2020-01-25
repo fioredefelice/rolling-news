@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Date from '../date/Date';
 import Button from '../button/Button';
 import Logo from '../../images/rolling.png';
@@ -28,13 +29,18 @@ class Header extends React.Component {
       );
     } else {
       return (
-        <Button
-          id="1"
-          text="LogIn"
-          type="submit"
-          size="md"
-          color="light"
-        /> 
+        <>
+          <Button
+            id="1"
+            text="LogIn"
+            type="submit"
+            size="md"
+            color="light"
+            onClick={() => {
+              this.props.history.push('/login');
+            }}
+          />
+        </>
       );
     }
   }
@@ -83,23 +89,23 @@ class Header extends React.Component {
                 items={[ 
                   {
                     id: 0,
-                    title: 'Home', 
-                    path: '/home'
+                    title: 'Inicio', 
+                    path: '/'
                   }, 
                   {
                     id: 1,
-                    title: 'Articles', 
-                    path: '/articles'
+                    title: 'Policiales', 
+                    path: '/policiales'
                   },
                   {
                     id: 2,
-                    title: 'Detail', 
-                    path: '/detail'
+                    title: 'Deportes', 
+                    path: '/deportes'
                   },
                   {
                     id: 3,
-                    title: 'Login', 
-                    path: '/login'
+                    title: 'Actualidad', 
+                    path: '/actualidad'
                   }
               ]}
               />
@@ -118,13 +124,12 @@ class Header extends React.Component {
   }
 
   render () {
-    const logo = React.createElement ('img', {className:'', src:'../../images/rolling.png'})
     return (
-      <header className ="bg-dark">
+      <header className ="bg-dark p-4">
         {this.ViewAdmin(true)}       
       </header>
     );
   }
 }
 
-export default Header;
+export default withRouter(Header);

@@ -41,6 +41,15 @@ const App = () => {
         <Route path="/playground">
           <Playground />
         </Route>
+        <Route path="/actualidad">
+          <Home />
+        </Route>
+        <Route path="/policiales">
+          <Home />
+        </Route>
+        <Route path="/deportes">
+          <Home />
+        </Route>
       </Router>
       <Footer />
     </>

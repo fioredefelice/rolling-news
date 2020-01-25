@@ -15,6 +15,7 @@ import Clock from '../../components/date/Date';
 import Article from '../article/Article';
 import Icon from '../../components/icon/Icon';
 import Footer from '../../components/footer/Footer';
+import Login from '../../views/login/Login';
 
 class Playground extends Component {
     constructor(props) {
@@ -263,6 +264,10 @@ class Playground extends Component {
                 <article id="footer">
                     <h3>Footer Component</h3>
                     <Footer />
+                </article>
+                <article id="login">
+                    <h3>Login Component</h3>
+                    <Login />
                 </article>
             </div>
         );

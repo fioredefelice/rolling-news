@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import InputElement from '../../components/input/InputElement';
 import Button from '../../components/button/Button';
+import { get } from '../../utils/services';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { get, createConection } from '../../utils/services';
 
 class Login extends Component {
@@ -46,6 +48,8 @@ class Login extends Component {
     }
     render() {
         return (
+            <div>
+                <form className="container " onSubmit={this.handleOnSubmit}>                   
             <div className= "login-page rounded border">
                 <form className="register-form" onSubmit={this.handleOnSubmit}>                    
                     <div className="form-group">
@@ -67,6 +71,22 @@ class Login extends Component {
                             id="password"
                             handleOnChange={this.handleOnChange}
                         />      
+                    </div>
+                    <div className="btn btn-primary btn-sm">
+                        <Button
+                            id="1"
+                            text="Login"
+                            type="submit"
+                            size="md"
+                            color="primary"
+                        />
+                    </div>
+                    <div className="btn btn-danger btn-md m-1">
+                        <Link 
+                            className="btn btn-danger btn-md m-1" 
+                            to="./home"
+                            >Cancelar
+                        </Link>
                     </div>
                     <div className="button-center">
                     <Button
