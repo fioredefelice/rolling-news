@@ -1,4 +1,4 @@
-import { getItem, setItem } from './storage';
+import { clearItems, getItem, setItem } from './storage';
 
 const get = (url) => {
     return window.fetch(url)
@@ -28,7 +28,11 @@ const put = (url, data) => {
 };
 
 const isLogged = () => {
-    return getItem('userConnected');
+    return (getItem('userConnected')) ? getItem('userName') : false;
+}
+
+const closeSession = () => {
+    clearItems();
 }
 
 const createConection = userName => {
@@ -36,4 +40,4 @@ const createConection = userName => {
     setItem('userName', userName);
 }
 
-export { createConection, isLogged, get, post, put };
+export { createConection, closeSession, isLogged, get, post, put };

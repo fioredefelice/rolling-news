@@ -1,10 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import Date from '../date/Date';
+import { Link, withRouter } from 'react-router-dom';
+import { isLogged, closeSession } from '../../utils/services';
 import Button from '../button/Button';
 import Logo from '../../images/rolling.png';
 import Icon from '../icon/Icon';
 import Navbar from '../navbar/Navbar';
+
+import './header.css';
 
 class Header extends React.Component {
   constructor(props){
@@ -13,33 +15,62 @@ class Header extends React.Component {
     this.ViewAdmin = this.ViewAdmin.bind(this);
   }
 
-  Logged(isLoggedIn) {
+  Logged(isLoggedIn, userName) {
     if (isLoggedIn) {
       return (
-        <>
-          <h4>Username</h4>
+        <div>
+          <h6>{userName}</h6>
           <Button 
             id="2"
             text="LogOut"
-            type="submit"
+            type="button"
             size="md"
             color="danger"
+            onClick={() => {
+              closeSession();
+              this.props.history.push('/');
+            }}
           />
-        </>
+        </div>
       );
     } else {
       return (
         <>
-          <Button
-            id="1"
-            text="LogIn"
-            type="submit"
-            size="md"
-            color="light"
-            onClick={() => {
-              this.props.history.push('/login');
-            }}
-          />
+          <div className="text-right">
+            <Button
+              id="1"
+              text="LogIn"
+              type="submit"
+              size="md"
+              color="success"
+              onClick={() => {
+                this.props.history.push('/login');
+              }}
+            />
+          </div>
+          <div>
+            <a href="https://www.facebook.com" target="_blank">
+              <Icon
+                name="facebook" 
+                size="2x" 
+                color="#3b5998"
+              />
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+              <Icon
+                name="twitter"
+                size="2x"
+                color="#00acee"
+              />
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <Icon
+                name="instagram"
+                size="2x"
+                color="#e95058"
+              />
+            </a>
+          </div>
         </>
       );
     }
@@ -47,39 +78,15 @@ class Header extends React.Component {
 
   ViewAdmin(admin){
     let renderViewAdmin;      
-    if(admin){
+    if(!admin){
         renderViewAdmin = 
           <div>
             <div className="d-flex justify-content-between">
-                <div>
-                  <img className ="imglogo m-2" src={Logo} />
+                <div className="logo-container">
+                  <Link to="/">
+                    <img className ="imglogo" src={Logo} /> Rolling News
+                  </Link>
                 </div>
-              <div className="p-2">
-                <Date />
-              </div>
-              <div className ="mt-1">
-                <a href="https://www.facebook.com" target="_blank">
-                  <Icon
-                    name="facebook" 
-                    size="2x" 
-                    color="#3b5998"
-                  />
-                </a>
-                <a href="https://www.twitter.com" target="_blank">
-                  <Icon
-                    name="twitter"
-                    size="2x"
-                    color="#00acee"
-                  />
-                </a>
-                <a href="https://www.instagram.com" target="_blank">
-                  <Icon
-                    name="instagram"
-                    size="2x"
-                    color="#e95058"
-                  />
-                </a>
-              </div>
               <div>
                 {this.Logged(false)}
               </div>
@@ -115,8 +122,12 @@ class Header extends React.Component {
       renderViewAdmin = 
       <div>      
         <div className="d-flex justify-content-between">
-          <img className ="imglogo m-2" src={Logo} />
-          {this.Logged(true)}
+        <div className="logo-container">
+          <Link to="/">
+            <img className ="imglogo" src={Logo} /> Rolling News
+          </Link>
+        </div>
+          {this.Logged(true, admin)}
         </div>
       </div>;
     }
@@ -125,8 +136,8 @@ class Header extends React.Component {
 
   render () {
     return (
-      <header className ="bg-dark p-4">
-        {this.ViewAdmin(true)}       
+      <header className ="bg-dark p-2" style={{marginBottom: '30px'}}>
+        {this.ViewAdmin(isLogged())}       
       </header>
     );
   }

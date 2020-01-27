@@ -6,4 +6,8 @@ const getItem = (key) => {
     return JSON.parse(localStorage.getItem(key));
 };
 
-export { setItem, getItem };
+const clearItems = () => {
+    localStorage.clear();
+}
+
+export { clearItems, setItem, getItem };

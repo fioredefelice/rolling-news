@@ -28,7 +28,9 @@ switch(name) {
             }
  
 return(
-    <FontAwesomeIcon icon={icon} size={size} color={color} />
+    <span style={{display: 'inline-block', margin: '4px'}}>
+        <FontAwesomeIcon icon={icon} size={size} color={color} />
+    </span>
     );
     
 };

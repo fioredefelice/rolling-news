@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Date from '../date/Date';
 
 class Navbar extends React.Component {
     render () {
@@ -21,6 +22,9 @@ class Navbar extends React.Component {
                             );
                         })}
                     </ul>
+                    <span className="navbar-text">
+                        <Date />
+                    </span>
                 </div>
             </nav>                       
 

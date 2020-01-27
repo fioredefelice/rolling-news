@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import InputElement from '../../components/input/InputElement';
 import Button from '../../components/button/Button';
-import { get } from '../../utils/services';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { get, createConection } from '../../utils/services';
 
@@ -47,17 +46,15 @@ class Login extends Component {
         }
     }
     render() {
-        return (
-            <div>
-                <form className="container " onSubmit={this.handleOnSubmit}>                   
-            <div className= "login-page rounded border">
-                <form className="register-form" onSubmit={this.handleOnSubmit}>                    
+        return (   
+            <div className="container w-50 m-auto login-page rounded border">
+                <form className="register-form" onSubmit={this.handleOnSubmit}>
                     <div className="form-group">
                         <InputElement
                             value={this.state.userName}
                             label="User"
-                            placeholder="UserName"                                                                                                                                                                                                                                                                                                                                                                                              
-                            type="text"                                                                                                                                                                                                                                                                                                                                                                                         
+                            placeholder="UserName"
+                            type="text"
                             id="userName"
                             handleOnChange={this.handleOnChange}
                         />      
@@ -66,13 +63,13 @@ class Login extends Component {
                         <InputElement
                             value={this.state.password}
                             label="Password"
-                            placeholder="Password"                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                            placeholder="Password"
                             type="password" 
                             id="password"
                             handleOnChange={this.handleOnChange}
                         />      
                     </div>
-                    <div className="btn btn-primary btn-sm">
+                    <div>
                         <Button
                             id="1"
                             text="Login"
@@ -80,22 +77,18 @@ class Login extends Component {
                             size="md"
                             color="primary"
                         />
-                    </div>
-                    <div className="btn btn-danger btn-md m-1">
-                        <Link 
-                            className="btn btn-danger btn-md m-1" 
-                            to="./home"
-                            >Cancelar
-                        </Link>
+                        <Button
+                            id="2"
+                            text="Cancel"
+                            type="button"
+                            size="md"
+                            color="danger"
+                            onClick={() => {
+                                this.props.history.push('/');
+                            }}
+                        />
                     </div>
                     <div className="button-center">
-                    <Button
-                        id="1"
-                        text="Login"
-                        type="submit"
-                        size="md"
-                        color="primary"
-                    />
                     <p className="message">Not registered? <a href="#">Create an account</a></p>
                     </div>    
                 </form>
